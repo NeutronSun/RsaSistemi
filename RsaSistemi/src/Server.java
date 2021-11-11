@@ -5,19 +5,18 @@ public class Server {
     public static void main(String[] args) throws IOException {
         int portNumber = 77;
             ServerSocket serverSocket = new ServerSocket(portNumber);
+            System.out.println("waiting someone to talk with" + new StringBuilder().appendCodePoint(0x1F62A).toString());
             Rsa encryptor = new Rsa();
             Socket clientSocket = serverSocket.accept();
+            System.out.println("matched with the faring client" + new StringBuilder().appendCodePoint(0x1F497).toString());
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             PrintWriter putIncliet = new PrintWriter(clientSocket.getOutputStream(), true);  
             ServerThreadReader t = new ServerThreadReader(clientSocket, encryptor);
             new Thread(t).start();
-            putIncliet.println(encryptor.getKey());   
-            System.out.println(encryptor.keyFriend);           
-            BufferedReader getFromItSelf = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            putIncliet.println(encryptor.getKey());      
             String userInput;
             while ((userInput = in.readLine()) != null) {
-                System.out.println(encryptor.encrypt(userInput));
-                putIncliet.write(encryptor.encrypt(userInput));
+                putIncliet.println(encryptor.encrypt(userInput));
             }
         
     }

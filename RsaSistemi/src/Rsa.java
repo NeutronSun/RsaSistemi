@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.util.Random;
 
 
 public class Rsa {
@@ -12,11 +13,9 @@ public class Rsa {
     private BigInteger e = new BigInteger("0");
     private BigInteger d = new BigInteger("0");
     private BigInteger phi = new BigInteger("0");
-    private static int cont = 0;
     public String keyFriend;
 
-    {lastPrime = newPrime(lastPrime);
-    cont++;}
+    {lastPrime = new BigInteger(lastPrime.bitLength(), new Random());}
 
     public Rsa() {
         p = newPrime(lastPrime);
@@ -25,7 +24,6 @@ public class Rsa {
         e = coprimes();
         phi = phi();
         d = e.modInverse(phi);
-        System.out.println(cont);
         //System.out.println("e: " + e + " n: " + n);
     }
 
@@ -55,6 +53,8 @@ public class Rsa {
 
     public BigInteger newPrime(BigInteger prime) {
         BigInteger a = new BigInteger("2");
+        if(prime.mod(BigInteger.TWO).equals(BigInteger.ZERO))
+        prime = prime.add(BigInteger.ONE);
         do {
             prime = prime.add(BigInteger.TWO);
         } while (!a.modPow(prime.subtract(BigInteger.ONE), prime).equals(BigInteger.ONE));
@@ -108,7 +108,7 @@ public class Rsa {
         }
         
         int everyN = l/part;
-        System.out.println("l: " + l + " part: " + part + " everyN: " + everyN);
+        //System.out.println("l: " + l + " part: " + part + " everyN: " + everyN);
         cont = 0;
         String cypherText = "";
         String supp = "";
@@ -152,7 +152,7 @@ public class Rsa {
     }
 
     public void setFriendKey(String s){
-        keyFriend = s.substring(2);
+        keyFriend = s;
     }
 
 }

@@ -18,11 +18,11 @@ public class ServerThreadReader implements Runnable {
                 s = in.readLine();
                 if(s.startsWith("pk")){
                 rsa.setFriendKey(s.substring(2));
-                System.out.println("setted");
-                }else{
-                System.out.println(rsa.decrypt(s));}
+                System.out.println("i gori the chi");
+                }else
+                System.out.println("<Client> " + rsa.decrypt(s));
             } catch (IOException e) {
-                System.out.println("wegweg");
+                System.out.println("zeg");
                 return;
             }
         }
