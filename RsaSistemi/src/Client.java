@@ -16,6 +16,5 @@ public class Client {
         while ((userInput = in.readLine()) != null) {
             putInServer.println(rsa.encrypt(userInput));
         }
-       
     }
 }

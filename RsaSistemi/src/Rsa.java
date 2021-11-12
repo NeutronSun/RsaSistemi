@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Rsa {
 
-    private static BigInteger lastPrime = new BigInteger("150000000000000000000000000000000000000000000000973");
+    private static BigInteger lastPrime = new BigInteger("150000000073150000000073150000000073150000000073150000000073");
     private BigInteger p = new BigInteger("47");
     private BigInteger q = new BigInteger("71");
     private BigInteger n = new BigInteger("0");
@@ -24,7 +24,7 @@ public class Rsa {
         e = coprimes();
         phi = phi();
         d = e.modInverse(phi);
-        //System.out.println("e: " + e + " n: " + n);
+        System.out.println("e: " + e + " n: " + n);
     }
 
     public BigInteger findD() {
@@ -73,7 +73,7 @@ public class Rsa {
     public String encrypt(String ss) throws UnsupportedEncodingException {
         String[] supOne = keyFriend.split("/");
         BigInteger publicExp = new BigInteger(supOne[0]);
-        BigInteger publicN = new BigInteger(supOne[1]);;
+        BigInteger publicN = new BigInteger(supOne[1]); 
         BigInteger plainText, cypher = new BigInteger("0");
         boolean lengthPrime = false;
         ss = ss.replaceAll("<3", new StringBuilder().appendCodePoint(0x1F497).toString());
@@ -100,7 +100,7 @@ public class Rsa {
             l = l+1;
         }
 
-        for(int i = 2; i <= l/20; i++) {
+        for(int i = 2; i <= l/2; i++) {
             if(l % i == 0){
                 part = i;
                 cont++;
