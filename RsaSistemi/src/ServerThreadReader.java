@@ -18,7 +18,6 @@ public class ServerThreadReader implements Runnable {
                 s = in.readLine();
                 if(s.startsWith("pk")){
                 rsa.setFriendKey(s.substring(2));
-                System.out.println("i gori the chi");
                 }else
                 System.out.println("<Client> " + rsa.decrypt(s));
             } catch (IOException e) {

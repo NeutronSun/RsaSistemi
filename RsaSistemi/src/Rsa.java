@@ -24,7 +24,6 @@ public class Rsa {
         e = coprimes();
         phi = phi();
         d = e.modInverse(phi);
-        System.out.println("e: " + e + " n: " + n);
     }
 
     public BigInteger findD() {
@@ -76,7 +75,6 @@ public class Rsa {
         BigInteger publicN = new BigInteger(supOne[1]); 
         BigInteger plainText, cypher = new BigInteger("0");
         boolean lengthPrime = false;
-        ss = ss.replaceAll("<3", new StringBuilder().appendCodePoint(0x1F497).toString());
         byte[] erbite = ss.getBytes("UTF-8");
         byte[] toSend = new byte[erbite.length+1];
         toSend[0] = 0;
